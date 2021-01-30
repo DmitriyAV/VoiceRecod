@@ -5,18 +5,20 @@ import java.io.*;
 import java.net.URL;
 
 import com.itextpdf.text.Image;
+import com.voicerecoder.VoiceRecogniz;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import javax.net.ssl.HttpsURLConnection;
+import javax.sound.midi.VoiceStatus;
 
 import com.itextpdf.text.pdf.PdfWriter;
 import com.itextpdf.text.pdf.PdfDocument;
 
 
 public class JSONobject {
-    public static String url = "https://api.unsplash.com/search/photos?page=1&query=love&client_id=pSYNveFhMc6_0fkxhBff_jYb3J9lMatQp76-soivrGA";
+
 /*    public static String read(Reader re) throws IOException {
         StringBuilder sb = new StringBuilder();
         int cp;
@@ -81,7 +83,7 @@ public class JSONobject {
     }
 
     public static Object start() {
-        String json = newURLs(url);
+        String json = newURLs(VoiceRecogniz.newURL);
         JSONObject obj = null;
         try {
             obj = new JSONObject(json);

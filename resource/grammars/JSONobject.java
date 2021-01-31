@@ -82,27 +82,27 @@ public class JSONobject {
         return null;
     }
 
-    public static Object start() {
-        String json = newURLs(VoiceRecogniz.newURL);
+    public static void start(String nUrl) {
+        String json = newURLs(nUrl);
         JSONObject obj = null;
         try {
+
             obj = new JSONObject(json);
             JSONArray results_arr = obj.getJSONArray("results");
             for (int i = 0; i < results_arr.length(); i++) {
                 // get the place id of each object in JSON (Google Search API)
                 JSONObject place_id = results_arr.getJSONObject(i).getJSONObject("urls");
-                for (int j = 0; j < 2; j++) {
-                    JSONObject picJson = place_id.getJSONObject("regular");
-                    return picJson.toString();
+                for (int j = 0; j < i; j++) {
+                    String picJson = place_id.getString("regular");
+                    System.out.println(picJson);
                 }
             }
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        return obj;
     }
 
-    public static void pic(String pict) {
+    public static void pic(String pic) {
         PdfDocument document = new PdfDocument();
 
         try {
@@ -114,9 +114,7 @@ public class JSONobject {
             document.add(image1);
 
 
-            String imageUrl = pict;
-
-            Image image2 = Image.getInstance(new URL(imageUrl));
+            Image image2 = Image.getInstance(new URL(pic));
             document.add(image2);
 
             document.close();
@@ -125,8 +123,5 @@ public class JSONobject {
         }
     }
 
-    public static void getpic(){
-        pic((String) start());
-    }
 }
 
